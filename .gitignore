@@ -1,0 +1,12 @@
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+.cxx/
+captures/
+tools/
+*.apk
+!docs/sipdesk.apk
+*.aab
+.DS_Store

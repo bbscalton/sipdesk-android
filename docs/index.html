@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIPDesk — Android desk phone</title>
+  <meta name="description" content="SIPDesk is an Android SIP phone that opens its own tunnel, then registers one extension and places G.711 calls.">
+  <style>
+    :root {
+      --navy: #0b2545;
+      --ink: #e8eef6;
+      --muted: #9aabbf;
+      --teal: #13c4a3;
+      --teal-ink: #04281f;
+      --lcd: #eef2f0;
+      --lcd-ink: #1c2b26;
+      --line: rgba(255, 255, 255, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background:
+        radial-gradient(900px 420px at 80% -10%, rgba(19, 196, 163, 0.18), transparent 60%),
+        var(--navy);
+      color: var(--ink);
+    }
+    a { color: var(--teal); }
+    header, main, footer { width: min(920px, calc(100% - 32px)); margin: 0 auto; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 28px 0 8px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.02em; }
+    .mark { width: 36px; height: 36px; }
+    main { padding: 28px 0 64px; }
+    h1 { font-size: clamp(40px, 7vw, 68px); line-height: 0.95; margin: 12px 0 16px; }
+    .lede { font-size: 1.15rem; max-width: 38rem; color: var(--muted); margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 36px; }
+    .download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--teal);
+      color: var(--teal-ink);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 14px 18px;
+      border-radius: 999px;
+    }
+    .download:hover { filter: brightness(1.05); }
+    .meta { color: var(--muted); font-size: 0.92rem; }
+    .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    .phone {
+      background: #1a222b;
+      border-radius: 28px;
+      padding: 18px 16px 22px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+    .lcd {
+      background: var(--lcd);
+      color: var(--lcd-ink);
+      border-radius: 16px;
+      min-height: 132px;
+      padding: 16px 16px 14px;
+      font-family: "Cascadia Mono", "Segoe UI Mono", ui-monospace, monospace;
+    }
+    .lcd .top { display: flex; justify-content: space-between; font-size: 12px; color: #5d6b66; }
+    .lcd strong { display: block; font-size: 22px; margin-top: 18px; }
+    .lcd .ext { margin-top: 8px; }
+    .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+    .keys span {
+      background: #2a333d;
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px 0;
+      color: #d5dde6;
+      font-size: 13px;
+    }
+    section h2 { font-size: 1.15rem; margin: 0 0 10px; }
+    ol, ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+    li + li { margin-top: 8px; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 18px 8px;
+      margin-top: 18px;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; width: 38%; }
+    footer { color: var(--muted); font-size: 0.85rem; padding-bottom: 36px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 108 108" aria-hidden="true">
+        <rect width="108" height="108" rx="24" fill="#07182e"/>
+        <path d="M68 36a16 16 0 0 1 12 12" fill="none" stroke="#13c4a3" stroke-width="3" stroke-linecap="round"/>
+        <path d="M64 40a10 10 0 0 1 8 8" fill="none" stroke="#13c4a3" stroke-width="3" stroke-linecap="round"/>
+        <path fill="#13c4a3" d="M36 66c-2-10 3-19 13-22l7 5c2 2 2 6-1 8l-4 2c4 8 10 14 18 18l2-4c2-2 6-2 8 0l5 7c2 8-7 13-16 10-20-6-30-16-32-24z"/>
+      </svg>
+      SIPDesk
+    </div>
+    <a href="sipdesk.apk">Download</a>
+  </header>
+  <main>
+    <p class="meta">Android · one extension · version 1.0.0</p>
+    <h1>A desk phone that brings its own tunnel.</h1>
+    <p class="lede">SIPDesk registers one SIP extension and carries the call through a Tailscale userspace tunnel. The phone system stays on its office address. No separate VPN app.</p>
+    <div class="actions">
+      <a class="download" href="sipdesk.apk" download>Download SIPDesk.apk</a>
+      <span class="meta">87 MB · arm64-v8a and armeabi-v7a · debug build</span>
+    </div>
+    <div class="grid">
+      <div>
+        <section>
+          <h2>Install</h2>
+          <ol>
+            <li>Download the APK on the phone, or copy it over USB.</li>
+            <li>Open it and allow installation from that source if Android asks.</li>
+            <li>Allow the microphone, notifications, and full-screen alerts.</li>
+            <li>Allow the VPN prompt. The phone will not register until the tunnel has a 100.x address.</li>
+          </ol>
+        </section>
+        <section class="card">
+          <h2>First launch</h2>
+          <table>
+            <tr><th>Headscale server</th><td>The URL of your Headscale server. It is not built into the app.</td></tr>
+            <tr><th>Auth key</th><td>A pre-auth key from that server. Later launches reuse the saved node.</td></tr>
+            <tr><th>Server</th><td>The phone system’s office address, such as 192.168.2.104.</td></tr>
+            <tr><th>Extension</th><td>The SIP extension and its password.</td></tr>
+          </table>
+          <p class="meta">A computer already on the tailnet at the office must share the office LAN into the tailnet. The phone system does not run Tailscale and does not get its own 100.x address.</p>
+        </section>
+      </div>
+      <aside class="phone" aria-hidden="true">
+        <div class="lcd">
+          <div class="top"><span>100.64.0.12</span><span>UDP</span></div>
+          <strong>Cashier</strong>
+          <div class="ext">Ext 120</div>
+        </div>
+        <div class="keys">
+          <span>Recents</span><span>Redial</span><span>Settings</span>
+          <span>1</span><span>2</span><span>3</span>
+          <span>4</span><span>5</span><span>6</span>
+          <span>7</span><span>8</span><span>9</span>
+          <span>*</span><span>0</span><span>#</span>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer>
+    <p>Audio is G.711 (PCMU and PCMA). Linphone is GPLv3; a closed-source sale needs a commercial licence from Belledonne Communications. The tunnel uses Tailscale’s BSD-licensed userspace library because Headscale speaks the Tailscale protocol.</p>
+  </footer>
+</body>
+</html>
