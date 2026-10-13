@@ -101,25 +101,27 @@
       </svg>
       SIPDesk
     </div>
-    <a href="sipdesk.apk">Download</a>
+    <a href="sipdesk.apk?v=2.1.0">Download</a>
   </header>
   <main>
-    <p class="meta">Android · one extension · version 1.0.1</p>
+    <p class="meta">Android · one extension · version 2.1.0</p>
     <h1>A desk phone that brings its own tunnel.</h1>
     <p class="lede">SIPDesk registers one SIP extension and carries the call through a Tailscale userspace tunnel. The phone system stays on its office address. No separate VPN app.</p>
     <div class="actions">
-      <a class="download" href="sipdesk.apk" download>Download SIPDesk.apk</a>
-      <span class="meta">87 MB · arm64-v8a and armeabi-v7a · debug build</span>
+      <a class="download" href="sipdesk.apk?v=2.1.0" download>Download SIPDesk.apk</a>
+      <span class="meta">76 MB · arm64-v8a and armeabi-v7a · release build</span>
     </div>
     <div class="grid">
       <div>
         <section>
           <h2>Install</h2>
           <ol>
+            <li>Upgrading from 1.0.x? Uninstall it first: 2.x is signed with a new release key.</li>
             <li>Download the APK on the phone, or copy it over USB.</li>
             <li>Open it and allow installation from that source if Android asks.</li>
             <li>Allow the microphone, notifications, and full-screen alerts.</li>
             <li>Allow the VPN prompt. The phone will not register until the tunnel has a 100.x address.</li>
+            <li>In Settings tap <b>Scan QR code</b> (or <b>Paste setup link</b>) with the code from your administrator, then tap <b>Save &amp; Connect</b>.</li>
           </ol>
         </section>
         <section class="card">
